@@ -11,26 +11,26 @@ root.geometry('1800x200')
 main_pathway=os.getcwd()
 
 def AVS_thread():
-    os.system('python AVS.py')
+    os.system('python3 AVS.py')
 
 def APS_thread():
-    os.system('python APS.py')
+    os.system('python3 APS.py')
 
 def strip_plot_thread():
-    os.system('python strip_plot_sm.py')
+    os.system('python3 strip_plot_sm.py')
 
 def NOE_thread():
-    os.system('python NOE_GUI.py')
+    os.system('python3 NOE_GUI.py')
 
 def run_AVS():
-    pathway=main_pathway+'\Peaklist_Assignment_Library-PAL\V2\AVS'
+    pathway=main_pathway+'\Peaklist_Assignment_Library-PAL\V3\AVS'
     os.chdir(pathway)
     AVS_threading=threading.Thread(target=AVS_thread)
     AVS_threading.start()
 
 
 def run_APS():
-    pathway=main_pathway+'\Peaklist_Assignment_Library-PAL\V2\APS'
+    pathway=main_pathway+'\Peaklist_Assignment_Library-PAL\V3\APS'
     os.chdir(pathway)
     APS_threading=threading.Thread(target=APS_thread)
     APS_threading.start()
