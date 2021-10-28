@@ -6,7 +6,7 @@ import webbrowser
 
 root = tk.Tk()
 root.title('PAL')
-root.geometry('1800x200')
+root.geometry('1200x200')
 
 main_pathway=os.getcwd()
 
