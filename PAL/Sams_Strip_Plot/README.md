@@ -1,28 +1,96 @@
 # Sams_Strip_Plot
 
-How to Use (for Gianluca):
+Works similar to SPARKYs strip plot. 
 
-Pretty self explanatory now. Add peaklist files for the experiments you ran. Again as before, peaks must all have the same nitrogen value (i.e. don't use peak center). 
+Will search through the peaklists and output matches to user defined values. Additionally, can use BMRB average chemical shift ranges for amino acids to predict amino acid type using inputed chemical shift values. 
 
-Tolerance for carbon is 0.2, hydrogen 0.1 (but you can change these depending on how flexilble or stringent you want your strip plot to be). 
+***THIS PROGRAM WORKS ON THE ASSUMPTION THE AMIDE BACKBONE NITROGEN AND HYDROGEN VALUES IN THE 2D DATA, ARE IDENTICAL TO PEAKS PICKED IN THE 3D DATA. OTHERWISE THE PROGRAM WILL NOT WORK. IF "PEAK CENTER" HAS BEEN USED, THOSE VALUES WILL NOT BE THE SAME AND THIS PROGRAM WILL NOT WORK FOR THOSE PEAKS***
 
-The CO for going backwards (i-1) is the HNCACO, using HNCO carbonyl peak. The CO for going foward is the HNCO, using the HNCACO carbonyl peak.
+To use: 
 
-For NOEs, you can look at NH and HA range for comparisons. Check the box for the atoms to search (e.g. CA only checks the HNCA only, CA, CB checks HNCA and HNCACB, CA, CB, CO checks HNCA, HNCACB, and HNCACO, etc.). 
+***Short version***
+Simply upload peaklist files. Input tolerances (usually 0.2 for carbon, 0.02 for hydrogen). Input chemical shift values, and check the boxes for the experiments you want to run. 
+I.E. "CA Only" searches HNCA. "CA CB" searches HNCACB. To display the matches, make sure to checkbox "Display Carbon Matches" for 3D data searches, or the display NOE options for NOE filtered matches. 
 
-To display, simply check the display box. Carbon shows the strip plot for the 3D strip plot. The NH, HA NOE display shows the printout from the NOEs. 
+To identify amino acid type. Simply input chemical shift values of your search, and click identify. If no matches are found, you will only get an output of your inputed chemical shifts. 
 
-To use: Simply type in the values of your atoms. 
-e.g. if you want to find the i+1, type in the nitrogen of your i, the i CA, i CB, and i CO. The printout will be of other peaks (only displaying nitrogen value) that share the CA, CB, and CO values you inputted. 
+***Long Version***
 
-Since I don't have HNCACO data like you do, I haven't been able to test that out. So let me know if that part works properly or not. 
+Upload peaklist files you want to search through. Click the "Upload Peaklist Files" Button, and a window will pop up. 
 
-**I've added a new conversion tool (you'll find it where you upload your peaklist files). If you used "pc" when peak picking, use this tool first (only works on assigned peaks)** 
+Just use the browse button to upload your peaklist files (you don't need to upload NHSQC files to use the strip plot). 
 
-This will replace the nitrogen value of your 3D data of ONLY YOUR ASSIGNED PEAKS, with the value in your NHSQC. 
+Once you've loaded up the peaklists, simply exit the window. 
 
-So lets say you used "pc" for a peak in either your 2D or 3D, and thus the nitrogen value in the 3D doesn't match what you have in your NHSQC. This tool will change the 3D value so it matches the 2D. A new peaklist will be written containing these new values. If you wish to carry over your unassigned data, just make sure you check the box. No changes will be made to those peaks. 
+The Carbon and Hydrogen tolerance is the deviation the matches can have from the user inputed values. 
+Carbon is generally 0.2, Hydrogen is 0.02. 
 
-You may also carry over the NOEs of your assigned peaks, but to do so you have to upload the a peaklist of the NHSQC before you moved the 2D peaks around (this is more useful if you are transferring assignment, if you're just trying to get all your assigned peaks 3D data centered, ignore this). 
+Then you may input your CA, CB, CO, and Nitrogen values. 
 
-**This tool is exceptionally helpful when transferring assignments for 3D work. Often times, the majority of carbon values do not change in titrations or the addition of new domains. The amide backbone atoms will however. The logic is the same as above. Move your peaks in the NHSQC (recenter), then use that new peaklist with the old 3D data. The old 3D data's nitrogen and hydrogen values will now the same as your new peaklist. Only assigned peaks will be moved, and unless the "transfer unassigned peaks" is checked, the new peaklist will only contain the assigned peaks. You may also move all the NOE peaks as well, simply upload your old NOE peaklist, with the old NHSQC peaklist (prior to centering and moving your peaks). This will avoid having to repick all the shifted peaks in your 3D spectra. Make sure to go through your peaklists to recenter your carbon values (some items may have shifted in flight).**
+The CA, CB, and CO may be i or i-1 chemical shifts, depending on the direction you are searching (i-1, or i+1). 
+
+The Nitrogen will ALWAYS be the value of the i peak (the one you are looking at). 
+
+***Make sure to click enter for every value***
+
+The check boxes will define what peaklists are searched. 
+
+E.G. If you are going backwards, you would input the i-1 CA, CB, and CO values. 
+
+The "CA Only" checkbox will search the HNCA peaklist file for matches. 
+
+The "CA CB" will search the HNCA peaklist file for matches, then filter those matches with the CB value in the HNCACB
+
+```
+CA: 62.3
+CB: 32.5
+#CA only output
+123.5
+120.2
+115.5
+#CA CB output
+120.2
+```
+In the above example, the HNCA had 3 matches, but only one of those had a CB at the value defined by the user. 
+
+The order "left to right" indicates the search/filter order. 
+
+The "CA CB CO" search the HNCA peaklist first, then the HNCACB, and finally the HNCACO. 
+
+For going forward, its the same philosophy. 
+
+The "CA CO" now searches the HNCA, then filters those matches using the HNCO. 
+
+***CA only and CA CB is used for both directions, going forward and backwards***
+
+The NOE section defines what NOE ranges it will look for matches. This filter the above 3D data searches. 
+
+If "NH NOE" and "CA Only" is checked, the program will filter your CA matches using NOE matches. I.E. The i-1, i, and i+1 peak should have NOE crosspeaks to each other. This searches for those and filters matches using them. 
+
+The same is true for HA. Thus, you may also search for cross peaks for regions where HA show up. 
+
+The above checkboxes all run the program. However, they do not display the matches. 
+
+To display the matches, you must check the display boxes. 
+
+"Display Carbon Matches" will display matches from the 3D searches. 
+
+"Display NH NOE Matches" will ONLY display matches that have passed the NOE filter. 
+
+"Display combined NOEs" will display matches ONLY shared between the NH and HA matches. 
+
+***For amino acid type***
+This program can also use BMRB average chemical shift ranges to predict what type of amino acid you are searching. 
+
+To do so, simply input your chemical shift values and click identify. 
+
+NOTE: CA and CB values are quite specific to amino acids, however CO, N, and NH ranges can vary quite a bit protein to protein, and thus can provide erronous results. 
+
+By default, the program will use all information inputed. However, for i-1 searches, you don't have nitrogen or hydrogen amide values. As such, there is an option to exclude nitrogens in the search. 
+
+***To replace or remove inputted values, you must clear the entry box and click enter again, otherwise the old value will be kept and used in the search***
+
+
+There is a conversion tool as well, but it only moves assigned peaks. To use, simply upload the peaklists and click convert. 
+
+What this tool does is shift all the Nitrogen and Hydrogen values in 3D data, to an NHSQC peaklist. It will also move NOE peaks picked (these don't need to be assigned), using the old NHSQC peaklist, and the new one (again, this assumes no "peak center" has been used, and the NHSQC value of the amide backbone is identical to the one in the 3D data). You may of course transfer unassigned peaks, but their values will not be shifted. They will just be copy/pasted over with the same values in the new peaklist. You may also choose to only transfer CBs (if you have CB optimized experiments). 
