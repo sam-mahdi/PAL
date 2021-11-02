@@ -163,7 +163,7 @@ def all_backbone_atoms(carbon_alpha,carbon_beta,carbon_carbonyl,nitrogen_amide,h
                     continue
                 hydrogen_amide_list.append(f'{residue} {atom} {chemical_shift} {std}')
         with open('output.txt','w') as write_file:
-            write_file.write(f'Values inputted:\nAlpha Carbon: {carbon_alpha}\nBeta Carbon: {carbon_beta}\nCaonyl: {carbon_carbonyl}\nNitrogen: {nitrogen_amide}\nHydrogen: {hydrogen_amide}\n')
+            write_file.write(f'Values inputted:\nAlpha Carbon: {carbon_alpha}\nBeta Carbon: {carbon_beta}\nCarbonyl: {carbon_carbonyl}\nNitrogen: {nitrogen_amide}\nHydrogen: {hydrogen_amide}\n')
             for lines in matches_list:
                 #write_file.write(lines)
                 if lines.split()[0] != 'Match':
