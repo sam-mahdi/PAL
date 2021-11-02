@@ -5,6 +5,7 @@ import functools
 import os
 
 root = Tk()
+root.title('Strip Plot')
 
 class ReadOnlyText(st.ScrolledText):
     def __init__(self, *args, **kwargs):
@@ -593,7 +594,7 @@ Button(root, text='Enter', command=get_CB).grid(row=4,column=2, sticky=W)
 Button(root, text='Enter', command=get_CO).grid(row=5,column=2, sticky=W)
 Button(root, text='RUN', command=run).grid(row=13,column=2, sticky=W)
 Button(root, text='Clear Matches', command=clear).grid(row=14,column=2, sticky=W)
-Button(root, text='Clear Identity', command=clear).grid(row=14,column=2)
+Button(root, text='Clear Identity', command=clear).grid(row=14,column=2, sticky=E)
 Button(root, text='Enter', command=get_nitrogen).grid(row=6,column=2, sticky=W)
 Button(root, text='Enter', command=get_amide_hydrogen).grid(row=7,column=2, sticky=W)
 Button(root, text='Identify', command=identify_search).grid(row=13,column=2)
