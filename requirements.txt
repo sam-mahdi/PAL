@@ -1,6 +1,6 @@
 #may need to upgrade pip and setup tools to install mplcursors
---upgrade setuptools
---upgrade pip
+#pip install --upgrade setuptools
+#pip install --upgrade pip
 Pillow 
 numpy 
 mplcursors 
