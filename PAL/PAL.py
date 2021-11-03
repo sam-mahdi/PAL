@@ -23,26 +23,26 @@ def NOE_thread():
     os.system('python3 NOE_GUI.py')
 
 def run_AVS():
-    pathway=main_pathway+'\Peaklist_Assignment_Library-PAL\V3\AVS'
+    pathway=main_pathway+'/Peaklist_Assignment_Library-PAL/V3/AVS'
     os.chdir(pathway)
     AVS_threading=threading.Thread(target=AVS_thread)
     AVS_threading.start()
 
 
 def run_APS():
-    pathway=main_pathway+'\Peaklist_Assignment_Library-PAL\V3\APS'
+    pathway=main_pathway+'/Peaklist_Assignment_Library-PAL/V3/APS'
     os.chdir(pathway)
     APS_threading=threading.Thread(target=APS_thread)
     APS_threading.start()
 
 def run_strip_plot():
-    pathway=main_pathway+'\Sams_Strip_Plot'
+    pathway=main_pathway+'/Sams_Strip_Plot'
     os.chdir(pathway)
     strip_plot_threading=threading.Thread(target=strip_plot_thread)
     strip_plot_threading.start()
 
 def run_NOE_distance():
-    pathway=main_pathway+r'\NOE_Distance_Calculator'
+    pathway=main_pathway+r'/NOE_Distance_Calculator'
     os.chdir(pathway)
     run_NOE_thread=threading.Thread(target=NOE_thread)
     run_NOE_thread.start()
