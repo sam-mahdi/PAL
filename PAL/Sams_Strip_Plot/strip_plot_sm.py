@@ -603,7 +603,7 @@ Checkbutton(root, text="CA only", variable=CA_only_flag).grid(row=9,column=0, st
 Checkbutton(root, text="CA CB", variable=CA_CB_flag).grid(row=10,column=0, sticky=W)
 Checkbutton(root, text="CA CO", variable=CA_CO_flag).grid(row=11,column=0, sticky=W)
 Checkbutton(root, text="CA CB CO", variable=CA_CB_CO_flag).grid(row=12,column=0, sticky=W)
-Checkbutton(root, text="Exclude Nitrogen in Identity Search", variable=exclude_nitrogen_identity_search_flag).grid(row=6,column=2,sticky=E)
+Checkbutton(root, text="Exclude Nitrogen in Identity Search", variable=exclude_nitrogen_identity_search_flag).grid(row=8,column=2,sticky=W)
 Label(root,text='NOEs').grid(row=13,column=0, sticky=W)
 Checkbutton(root, text="NH NOE", variable=NH_flag).grid(row=14,column=0, sticky=W)
 Checkbutton(root, text="HA NOE", variable=HA_flag).grid(row=15,column=0, sticky=W)
