@@ -1,1 +1,5 @@
-Pillow numpy pymol mplcursors matplotlib
+Pillow 
+numpy 
+mplcursors 
+matplotlib
+pymol 
