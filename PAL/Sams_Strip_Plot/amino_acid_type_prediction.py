@@ -1,4 +1,5 @@
 import re
+
 def inputed_variables_count(carbon_alpha,carbon_beta,carbon_carbonyl,nitrogen_amide,hydrogen_amide):
     """Users may input a variety of variables, sometimes CA and CO, sometimes CA CB, sometimes only CA, to make sure only matches that contain the proper number of atoms (i.e. matches that match both CA and CO
     , here I define a count that will be used to filter matches)"""
@@ -10,7 +11,7 @@ def inputed_variables_count(carbon_alpha,carbon_beta,carbon_carbonyl,nitrogen_am
 
 
 
-def all_backbone_atoms(carbon_alpha,carbon_beta,carbon_carbonyl,nitrogen_amide,hydrogen_amide):
+def all_backbone_atoms(carbon_alpha,carbon_beta,carbon_carbonyl,nitrogen_amide,hydrogen_amide,identity_tolerance):
     """
     This will go through each amino acid set, and create lists depending on what matches it found. Since each amino acid only has one CA, CB, CO, etc. The number of matches should equal the number of inputed variables.
     If they do, then the matches are put into a list, then written into an output.txt file if users want to see the chemical shift values and std for their matches. Output of function is just a list of the atoms"""
@@ -37,7 +38,7 @@ def all_backbone_atoms(carbon_alpha,carbon_beta,carbon_carbonyl,nitrogen_amide,h
             residue_list.append(residue)
             atom=split_lines[1]
             chemical_shift=float(split_lines[5])
-            std=float(split_lines[6])
+            std=float(split_lines[6])*identity_tolerance
             lower_half=chemical_shift-std
             upper_half=chemical_shift+std
             if residue_list[0] != residue or (residue+atom) == 'VALN':
