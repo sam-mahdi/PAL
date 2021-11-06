@@ -25,17 +25,17 @@ class ReadOnlyText(st.ScrolledText):
         return wrap
 
 
-ttk.Label(root,text = "Program Output",font = ("Times New Roman", 15),background = 'green',foreground = "white").grid(column = 1, row = 16)
-ttk.Label(root,text = "Strip Plot Matches",font = ("Times New Roman", 12)).grid(column = 0, row = 17)
-ttk.Label(root,text = "Amino Acid Identity",font = ("Times New Roman", 12)).grid(column = 2, row = 17)
+ttk.Label(root,text = "Program Output",font = ("Times New Roman", 15),background = 'green',foreground = "white").grid(column = 1, row = 17)
+ttk.Label(root,text = "Strip Plot Matches",font = ("Times New Roman", 12)).grid(column = 0, row = 18)
+ttk.Label(root,text = "Amino Acid Identity",font = ("Times New Roman", 12)).grid(column = 2, row = 18)
 
 text_area = ReadOnlyText(root,width = 30,height = 15,font = ("Times New Roman",12))
 
 matches_text_area = ReadOnlyText(root,width = 30,height = 15,font = ("Times New Roman",12))
 
-text_area.grid(column = 0,columnspan=2,sticky=W+E,pady = 10, padx = 10,row=18)
+text_area.grid(column = 0,columnspan=2,sticky=W+E,pady = 10, padx = 10,row=19)
 
-matches_text_area.grid(column = 2,sticky=W+E,pady = 10, padx = 10,row=18)
+matches_text_area.grid(column = 2,sticky=W+E,pady = 10, padx = 10,row=19)
 
 hnca=()
 hnca_directory=()
@@ -63,6 +63,7 @@ Label(root, text='CB Value').grid(row=4, sticky=W)
 Label(root, text='CO Value').grid(row=5, sticky=W)
 Label(root, text='Nitrogen Value').grid(row=6, sticky=W)
 Label(root, text='NH Value').grid(row=7, sticky=W)
+Label(root,text='Identity Tolerance (fraction)').grid(row=8,sticky=W)
 
 carbon_tolerance_value=Entry(root)
 carbon_tolerance_value.grid(row=1,column=1,sticky=W)
@@ -78,7 +79,10 @@ nitrogen_tolerance_value=Entry(root)
 nitrogen_tolerance_value.grid(row=6,column=1,sticky=W)
 amide_hydrogen_tolerance_value=Entry(root)
 amide_hydrogen_tolerance_value.grid(row=7,column=1,sticky=W)
+identity_tolerance_value=Entry(root)
+identity_tolerance_value.grid(row=8,column=1,sticky=W)
 
+identity_tolerance=()
 carbon_tolerance=()
 hydrogen_tolerance=()
 counter=0
@@ -131,6 +135,13 @@ def get_amide_hydrogen():
         i_amide_hydrogen=()
     else:
         i_amide_hydrogen=float(amide_hydrogen_tolerance_value.get())
+
+def get_identity_tolerance():
+    global identity_tolerance
+    if identity_tolerance_value.get() == '':
+        identity_tolerance=()
+    else:
+        identity_tolerance=float(identity_tolerance_value.get())
 
 
 CA_only_flag = IntVar()
@@ -559,6 +570,7 @@ def identify_search():
     global i_nitrogen
     global i_minus_CA
     global i_minus_CB
+    global identity_tolerance
     import amino_acid_type_prediction as aatp
     if i_minus_CA == () and i_minus_CB == () and i_minus_CO == () and i_amide_hydrogen == () and i_nitrogen == ():
         matches_text_area.insert(INSERT,'Please Enter at least one atom value for matching')
@@ -576,10 +588,16 @@ def identify_search():
             i_nitrogen=0
         if exclude_nitrogen_identity_search_flag.get() != 0:
             i_nitrogen=0
-        identity_list=aatp.all_backbone_atoms(i_minus_CA,i_minus_CB,i_minus_CO,i_nitrogen,i_amide_hydrogen)
-        name_list=['CA','CB','CO','N','NH']
+        if identity_tolerance == ():
+            identity_tolerance=1
+        identity_list=aatp.all_backbone_atoms(i_minus_CA,i_minus_CB,i_minus_CO,i_nitrogen,i_amide_hydrogen,identity_tolerance)
+        name_list=['CA','CB','CO','N','NH','Identity Tolerance']
         value_list=[i_minus_CA,i_minus_CB,i_minus_CO,i_nitrogen,i_amide_hydrogen]
         matches_text_area.insert(INSERT,f'\nID Match: {counter}\n')
+        if identity_tolerance > 1:
+            matches_text_area.insert(INSERT,f'Identity Tolerance increased by: {int(round((identity_tolerance-1)*100))}%\n')
+        if identity_tolerance < 1:
+            matches_text_area.insert(INSERT,f'Identity Tolerance decreased by: {int(round(identity_tolerance*100))}%\n')
         for names,values in zip(name_list,value_list):
             if values != 0:
                 matches_text_area.insert(INSERT,f'{names}: {values}\n')
@@ -592,32 +610,33 @@ Button(root, text='Enter', command=get_hydrogen_tolerance).grid(row=2,column=2, 
 Button(root, text='Enter', command=get_CA).grid(row=3,column=2, sticky=W)
 Button(root, text='Enter', command=get_CB).grid(row=4,column=2, sticky=W)
 Button(root, text='Enter', command=get_CO).grid(row=5,column=2, sticky=W)
-Button(root, text='RUN', command=run).grid(row=13,column=2, sticky=W)
-Button(root, text='Clear Matches', command=clear).grid(row=14,column=2, sticky=W)
-Button(root, text='Clear Identity', command=clear).grid(row=14,column=2, sticky=E)
+Button(root, text='RUN', command=run).grid(row=14,column=2, sticky=W)
+Button(root, text='Clear Matches', command=clear).grid(row=15,column=2, sticky=W)
+Button(root, text='Clear Identity', command=clear).grid(row=15,column=2)
 Button(root, text='Enter', command=get_nitrogen).grid(row=6,column=2, sticky=W)
 Button(root, text='Enter', command=get_amide_hydrogen).grid(row=7,column=2, sticky=W)
-Button(root, text='Identify', command=identify_search).grid(row=13,column=2)
-Label(root,text='Backward').grid(row=8,column=0, sticky=W)
-Checkbutton(root, text="CA only", variable=CA_only_flag).grid(row=9,column=0, sticky=W)
-Checkbutton(root, text="CA CB", variable=CA_CB_flag).grid(row=10,column=0, sticky=W)
-Checkbutton(root, text="CA CO", variable=CA_CO_flag).grid(row=11,column=0, sticky=W)
-Checkbutton(root, text="CA CB CO", variable=CA_CB_CO_flag).grid(row=12,column=0, sticky=W)
-Checkbutton(root, text="Exclude Nitrogen in Identity Search", variable=exclude_nitrogen_identity_search_flag).grid(row=8,column=2,sticky=W)
-Label(root,text='NOEs').grid(row=13,column=0, sticky=W)
-Checkbutton(root, text="NH NOE", variable=NH_flag).grid(row=14,column=0, sticky=W)
-Checkbutton(root, text="HA NOE", variable=HA_flag).grid(row=15,column=0, sticky=W)
-Label(root,text='Forward').grid(row=8,column=1,sticky=W)
-Checkbutton(root, text="HNCOCA only", variable=i_CA_flag).grid(row=9,column=1, sticky=W)
-Checkbutton(root, text="CA CO", variable=for_CA_CO_flag).grid(row=10,column=1, sticky=W)
-Checkbutton(root, text="CA CB CO", variable=for_CA_CB_CO_flag).grid(row=11,column=1, sticky=W)
-Checkbutton(root, text="CA and HNCOCA", variable=i_CA_CA_flag).grid(row=12,column=1, sticky=W)
-Checkbutton(root, text="CA CO and HNCOCA", variable=CA_CO_i_CA_flag).grid(row=13,column=1, sticky=W)
-Checkbutton(root, text="CA CB and HNCOCA", variable=CA_CB_i_CA_flag).grid(row=14,column=1, sticky=W)
-Checkbutton(root, text="CA CB CO and HNCOCA", variable=CA_CB_CO_i_CA_flag).grid(row=15,column=1, sticky=W)
-Checkbutton(root, text="Display Carbon Matches", variable=display_carbon_matches_flag).grid(row=9,column=2, sticky=W)
-Checkbutton(root, text="Display NH NOE Matches", variable=display_NH_NOE_flag).grid(row=10,column=2, sticky=W)
-Checkbutton(root, text="Display HA NOE Matches", variable=display_HA_NOE_flag).grid(row=11,column=2, sticky=W)
-Checkbutton(root, text="Display combined NOEs", variable=display_combined_NH_HA_NOE_flag).grid(row=12,column=2, sticky=W)
+Button(root, text='Enter', command=get_identity_tolerance).grid(row=8,column=2, sticky=W)
+Button(root, text='Identify', command=identify_search).grid(row=14,column=2)
+Label(root,text='Backward').grid(row=9,column=0, sticky=W)
+Checkbutton(root, text="CA only", variable=CA_only_flag).grid(row=10,column=0, sticky=W)
+Checkbutton(root, text="CA CB", variable=CA_CB_flag).grid(row=11,column=0, sticky=W)
+Checkbutton(root, text="CA CO", variable=CA_CO_flag).grid(row=12,column=0, sticky=W)
+Checkbutton(root, text="CA CB CO", variable=CA_CB_CO_flag).grid(row=13,column=0, sticky=W)
+Checkbutton(root, text="Exclude Nitrogen in Identity Search", variable=exclude_nitrogen_identity_search_flag).grid(row=9,column=2,sticky=W)
+Label(root,text='NOEs').grid(row=14,column=0, sticky=W)
+Checkbutton(root, text="NH NOE", variable=NH_flag).grid(row=15,column=0, sticky=W)
+Checkbutton(root, text="HA NOE", variable=HA_flag).grid(row=16,column=0, sticky=W)
+Label(root,text='Forward').grid(row=9,column=1,sticky=W)
+Checkbutton(root, text="HNCOCA only", variable=i_CA_flag).grid(row=10,column=1, sticky=W)
+Checkbutton(root, text="CA CO", variable=for_CA_CO_flag).grid(row=11,column=1, sticky=W)
+Checkbutton(root, text="CA CB CO", variable=for_CA_CB_CO_flag).grid(row=12,column=1, sticky=W)
+Checkbutton(root, text="CA and HNCOCA", variable=i_CA_CA_flag).grid(row=13,column=1, sticky=W)
+Checkbutton(root, text="CA CO and HNCOCA", variable=CA_CO_i_CA_flag).grid(row=14,column=1, sticky=W)
+Checkbutton(root, text="CA CB and HNCOCA", variable=CA_CB_i_CA_flag).grid(row=15,column=1, sticky=W)
+Checkbutton(root, text="CA CB CO and HNCOCA", variable=CA_CB_CO_i_CA_flag).grid(row=16,column=1, sticky=W)
+Checkbutton(root, text="Display Carbon Matches", variable=display_carbon_matches_flag).grid(row=10,column=2, sticky=W)
+Checkbutton(root, text="Display NH NOE Matches", variable=display_NH_NOE_flag).grid(row=11,column=2, sticky=W)
+Checkbutton(root, text="Display HA NOE Matches", variable=display_HA_NOE_flag).grid(row=12,column=2, sticky=W)
+Checkbutton(root, text="Display combined NOEs", variable=display_combined_NH_HA_NOE_flag).grid(row=13,column=2, sticky=W)
 
 mainloop()
