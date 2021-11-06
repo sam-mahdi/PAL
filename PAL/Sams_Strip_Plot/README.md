@@ -88,6 +88,8 @@ NOTE: CA and CB values are quite specific to amino acids, however CO, N, and NH 
 
 By default, the program will use all information inputed. However, for i-1 searches, you don't have nitrogen or hydrogen amide values. As such, there is an option to exclude nitrogens in the search. 
 
+The prediction is determined by the range of of chemical shifts typically observed for an amino acid. You may increase or decrease this range by adjusting the identity tolerance (i.e. increasing or decreasing the possible matches). Input fraction values (i.e. for 80% use 0.8). 
+
 ***To replace or remove inputted values, you must clear the entry box and click enter again, otherwise the old value will be kept and used in the search***
 
 
