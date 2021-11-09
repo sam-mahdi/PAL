@@ -25,7 +25,7 @@ def extract_experimental(data_file,data_directory):
     experimental_values=[]
     with open(data_file) as experimental:
         for data in experimental:
-            if data == '' or data == '\n':
+            if data == '' or data == '\n' data.split() == []:
                 continue
             experimental_values.append(data)
     return experimental_values
@@ -48,7 +48,7 @@ def calculate_rmsd(sparta_file,sparta_directory,data_file,data_directory,set_thr
     numpy_list=[]
     iterations=-1
     for experiments in experimental_values:
-        if experiments == '' or experiments == '\n':
+        if experiments == '' or experiments == '\n' experiments.split() == []:
             continue
         experiment_value.append(re.search('\d+\.\d+',experiments).group(0))
         number+=1
