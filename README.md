@@ -1,6 +1,8 @@
 # PAL
 This Library contains 5 different programs designed to assist in assigning NMR peaks using SPARKY. 
 
+Each Program contains a ReadMe. For instructions on how to use the program, simply navigate to the folder of the program you wish to use and look at its ReadMe. 
+
 ***AVS (Assignment Verification using Sparta+)***
 This program can generate SPARTA+ files from PDB structures. 
 It can also convert said generated SPARTA+ (or BMRB average chemical shifts) file into a format that can be used for APS. 
