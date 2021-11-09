@@ -74,7 +74,7 @@ tk.Button(root,text='AVS',command=run_AVS).grid(row=0,column=0)
 tk.Button(root,text='APS',command=run_APS).grid(row=1,column=0)
 tk.Button(root,text='Strip Plot',command=run_strip_plot).grid(row=2,column=0)
 tk.Button(root,text='NOE Distance Calculator',command=run_NOE_distance).grid(row=3,column=0)
-tk.Button(root,text='NOE Distance Calculator',command=run_anchor_point).grid(row=4,column=0)
+tk.Button(root,text='Anchor Point Finder [BETA]',command=run_anchor_point).grid(row=4,column=0)
 tk.Button(root,text='HELP',command=help_button).grid(row=5,column=0)
 
 root.mainloop()
