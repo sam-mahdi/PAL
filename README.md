@@ -1,5 +1,5 @@
 # PAL
-This Library contains 4 different programs designed to assist in assigning NMR peaks using SPARKY. 
+This Library contains 5 different programs designed to assist in assigning NMR peaks using SPARKY. 
 
 ***AVS (Assignment Verification using Sparta+)***
 This program can generate SPARTA+ files from PDB structures. 
@@ -20,3 +20,8 @@ Has the benefit of enabling the concomitant search of multiple spectra (instead 
 ***NOE Distance Calculator***
 Calculates the distance between various atoms in your PDB file. Lets the user search for atoms within a user-defined distance from a user-defined atom. 
 Incredibly useful for NOESYs. 
+
+***Anchor Point Finder***
+This program finds amide peaks whose strips contain both i and i-1 CA/CBs. 
+These peaks can be used as good anchor points for assignments. 
+Additionally, the program can filter these peaks by those that have i-1 or i+1 matches using a strip plot. And display the strip plot matches output. 
