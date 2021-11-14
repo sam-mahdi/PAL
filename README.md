@@ -23,7 +23,7 @@ Has the benefit of enabling the concomitant search of multiple spectra (instead 
 Calculates the distance between various atoms in your PDB file. Lets the user search for atoms within a user-defined distance from a user-defined atom. 
 Incredibly useful for NOESYs. 
 
-***Anchor Point Finder***
+***Anchor Point Finder [IN BETA]***
 This program finds amide peaks whose strips contain both i and i-1 CA/CBs. 
 These peaks can be used as good anchor points for assignments. 
 Additionally, the program can filter these peaks by those that have i-1 or i+1 matches using a strip plot. And display the strip plot matches output. 
