@@ -3,4 +3,4 @@ numpy
 mplcursors 
 matplotlib
 pandas
-pymol 
+#pymol 
