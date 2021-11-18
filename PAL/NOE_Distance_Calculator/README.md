@@ -36,3 +36,19 @@ Atom Searched: LEU 10 CD1
 ```
 
 Additionally, an output file (data table) is generated for those who wish to manually look through the matches instead of using the scripts search function. 
+
+The program only searches for matches within the chain defined. If you wish to search matches with other chains, click on "Search all Chains". 
+
+For matches in the same chain, the output will be as above. For matches in other chains, the chain will also be printed out. 
+
+```
+#searching all chains, using chain A
+L 108 CD2
+#output
+Atom Searched: LEU 108 CD2 
+ Matches Found: 
+CD1 LEU 108 2.45
+CD2 LEU 273 B 3.9
+CD1 LEU 273 B 4.25
+```
+In the above, we defined our search to Chain A, but checked the option to search all chains. So we are searching L108CD2 in chain A. You can see this atom has matches with its CD1 atom in Chain A, and matches with L273CD1 and CD2 in chain B of this protein. 
