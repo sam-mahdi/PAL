@@ -37,7 +37,7 @@ def create_data(pdb_file,pdb_directory,pdb_start,pdb_end,chain,distance_between_
                             aa_position.append(chain_search.group(5))
     value_holder=[]
     number_holder=[]
-    with open('output2.txt','w') as output_file:
+    with open('NOE_distance_output.txt','w') as output_file:
         for name,position in zip(aa_name,aa_position):
             for name2,position2 in zip(aa_name,aa_position):
                 coordinates_1=position.split()
@@ -62,7 +62,7 @@ def data_table(pdb_file,pdb_directory,pdb_start,pdb_end,chain,distance_between_a
     global list1
     global list2
     global list3
-    with open('output2.txt') as file:
+    with open('NOE_distance_output.txt') as file:
         for lines in file:
             a=lines.split()
             temp_list=[]
@@ -117,8 +117,13 @@ def search_table(pdb_file,pdb_directory,pdb_start,pdb_end,chain,distance_between
             else:
                 matches_list.append(f'{residue} {atom_type} {correlation} {distance}')
         if word_search != None and atom_search != None:
-            counter+=1
-            matches_list.append(f' {correlation} {distance}')
+            if use_all_chains != 0:
+                if residue.split()[2] == chain:
+                    counter+=1
+                    matches_list.append(f' {correlation} {distance}')
+            else:
+                counter+=1
+                matches_list.append(f' {correlation} {distance}')
     list0.clear()
     list1.clear()
     list2.clear()
