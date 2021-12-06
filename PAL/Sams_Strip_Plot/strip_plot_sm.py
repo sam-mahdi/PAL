@@ -171,7 +171,7 @@ def peaklist_window():
     new_top = newTopLevel(root)
     newWindow = new_top.newWindow
 
-def clear():
+def clear2():
     text_area.delete(1.0,END)
 
 def clear():
@@ -611,7 +611,7 @@ Button(root, text='Enter', command=get_CA).grid(row=3,column=2, sticky=W)
 Button(root, text='Enter', command=get_CB).grid(row=4,column=2, sticky=W)
 Button(root, text='Enter', command=get_CO).grid(row=5,column=2, sticky=W)
 Button(root, text='RUN', command=run).grid(row=14,column=2, sticky=W)
-Button(root, text='Clear Matches', command=clear).grid(row=15,column=2, sticky=W)
+Button(root, text='Clear Matches', command=clear2).grid(row=15,column=2, sticky=W)
 Button(root, text='Clear Identity', command=clear).grid(row=15,column=2)
 Button(root, text='Enter', command=get_nitrogen).grid(row=6,column=2, sticky=W)
 Button(root, text='Enter', command=get_amide_hydrogen).grid(row=7,column=2, sticky=W)
