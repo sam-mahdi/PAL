@@ -41,6 +41,8 @@ def make_bmrb_list(seq_file,seq_directory,mutation_list,sparta_file,sparta_direc
             for atoms in glycine_desired:
                 with open(sparta_file) as file:
                     for lines in file:
+                        if lines == '\n':
+                            continue
                         if lines.split(',')[0] == 'comp_id':
                             continue
                         amino_acid=acid_map[lines.split(',')[0]]
