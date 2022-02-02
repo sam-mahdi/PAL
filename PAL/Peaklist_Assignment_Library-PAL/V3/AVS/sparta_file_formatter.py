@@ -10,6 +10,8 @@ def create_seq_list(seq_file,seq_directory,seq_start):
         for amino_acid in sequence_file:
             stripped_amino_acid=amino_acid.strip().upper()
             for word in stripped_amino_acid:
+                if word.split() == []:
+                    continue
                 amino_acid_count+=1
                 sequence_list.append(str(amino_acid_count)+word)
     return sequence_list
