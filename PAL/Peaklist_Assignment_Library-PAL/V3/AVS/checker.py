@@ -243,6 +243,45 @@ def HNCO_checker(hnco_file,HNCO_directory,text_area):
             except:
                 text_area.insert(tk.INSERT,f'Program could not analyze, stopped at \n {hnco_lines}please check peak, correct, and rerun\n')
                 text_area.update_idletasks()
+                
+def HNCACO_checker(HNCACO_file,HNCACO_directory,text_area):
+    text_area.insert(tk.INSERT,f'Checking HNCACO\n')
+    text_area.update_idletasks()
+    os.chdir(HNCACO_directory)
+    with open(HNCACO_file) as HNCACO:
+        for HNCACO_lines in HNCACO:
+            if HNCACO_lines.strip().split() == []:
+                continue
+            if HNCACO_lines.strip().split()[0] in {'Assignment','?-?-?'}:
+                continue
+            HNCACO_split=HNCACO_lines.strip().split()
+            try:
+                amino_acid=HNCACO_lines.strip().split()[0][0]
+                if amino_acid not in accepted_letters:
+                    text_area.insert(tk.INSERT,f'Amino Acid {HNCACO_split[0]} amino acid is improperly labeled\n')
+                    text_area.update_idletasks()
+                if re.search('[A-Z]\d+\w+',HNCACO_lines.strip().split()[0]) is None:
+                    text_area.insert(tk.INSERT,f'Amino Acid {HNCACO_split[0]} format is wrong\n')
+                    text_area.update_idletasks()
+                if HNCACO_split[0].split('-')[1] != 'C' and HNCACO_split[0].split('-')[2] == 'H':
+                    text_area.insert(tk.INSERT,f"Amino Acid {HNCACO_split[0]} CA is improperly labeled\n")
+                    text_area.update_idletasks()
+                if HNCACO_split[0].split('-')[2] != 'H':
+                    if (re.search('^\w+\d+',HNCACO_split[0].split('-')[0])).group(0) != (re.search('^\w+\d+',HNCACO_split[0].split('-')[2])).group(0):
+                        text_area.insert(tk.INSERT,f"Amino Acid {HNCACO_split[0]} nitrogen or amide is improperly labeled\n")
+                        text_area.update_idletasks()
+                        continue
+                    i_atom=re.search('(\d+)(\w+)',HNCACO_split[0].split('-')[0])
+                    i_minus_atom=re.search('(\d+)(\w+)',HNCACO_split[0].split('-')[1])
+                    if int(i_atom.group(1)) != int(i_minus_atom.group(1))+1:
+                        text_area.insert(tk.INSERT,f"Amino Acid {HNCACO_split[0]} i-1 is improperly labeled (it is not labeled as the i-1)\n")
+                        text_area.update_idletasks()
+                    if i_minus_atom.group(2) != 'C':
+                        text_area.insert(tk.INSERT,f"Amino Acid {HNCACO_split[0]} C is improperly labeled\n")
+                        text_area.update_idletasks()
+            except:
+                text_area.insert(tk.INSERT,f'Program could not analyze, stopped at \n {HNCACO_lines}please check peak, correct, and rerun\n')
+                text_area.update_idletasks()
 
 def HCCONH_checker(hcconh_file,hcconh_directory,text_area):
     text_area.insert(tk.INSERT,f'Checking hcconh\n')
