@@ -2,6 +2,55 @@ This is the AVS Version 3 Manual
 
 While a lot under the hood has changed, the general use of the program is still relatively similar. There are still only 3 format accepted. BMRB NMRSTAR V2 and V3, as well as the NMRSTAR 3.1 that is generated from uploading SPARKY files. 
 
+***THE NUMBERING IN YOUR SEQUENCE AND ASSIGNMENTS MUST MATCH THE NUMBERING IN THE PDB FILE. THE PROGRAM ONLY USES A LINEAR SEQUENCE AND NUMBERING SYSTEM. SO IF YOU WANT TO INCLUDE MULTIPLE CHAINS, YOU WILL HAVE TO MODIFY THE PDB FILE***
+
+I.E.
+
+```
+ATOM   3189  N   SER B 211      39.314  31.261  59.693  1.00 30.69           N  
+ATOM   3190  CA  SER B 211      38.639  30.193  60.465  1.00 33.31           C  
+ATOM   3191  C   SER B 211      38.315  30.440  61.882  1.00 34.20           C  
+ATOM   3192  O   SER B 211      37.235  30.967  62.150  1.00 35.60           O  
+ATOM   3193  CB  SER B 211      39.408  28.870  60.356  1.00 33.98           C  
+ATOM   3194  OG  SER B 211      39.371  28.449  59.012  1.00 33.75           O  
+ATOM   3195  OXT SER B 211      39.109  30.076  62.739  1.00 35.63           O  
+TER    3196      SER B 211                                                      
+ATOM   3197  N   THR Y1874      25.442  40.818  39.630  1.00 41.53           N  
+ATOM   3198  CA  THR Y1874      25.461  42.111  38.933  1.00 41.37           C  
+ATOM   3199  C   THR Y1874      24.212  42.280  38.074  1.00 42.21           C  
+ATOM   3200  O   THR Y1874      23.085  42.305  38.590  1.00 45.33           O  
+ATOM   3201  CB  THR Y1874      26.716  42.234  38.076  0.00 20.00           C  
+ATOM   3202  OG1 THR Y1874      27.863  41.863  38.849  0.00 20.00           O  
+ATOM   3203  CG2 THR Y1874      26.982  43.691  37.730  0.00 20.00           C  
+ATOM   3204  N   ALA Y1875      24.407  42.401  36.767  1.00 41.37           N  
+ATOM   3205  CA  ALA Y1875      23.301  42.565  35.831  1.00 39.92           C  
+ATOM   3206  C   ALA Y1875      22.994  41.261  35.106  1.00 39.95           C  
+ATOM   3207  O   ALA Y1875      22.060  41.192  34.294  1.00 41.04           O  
+ATOM   3208  CB  ALA Y1875      23.627  43.664  34.830  1.00 40.96           C  
+```
+***SHOULD BE***
+```
+ATOM   3189  N   SER B 211      39.314  31.261  59.693  1.00 30.69           N  
+ATOM   3190  CA  SER B 211      38.639  30.193  60.465  1.00 33.31           C  
+ATOM   3191  C   SER B 211      38.315  30.440  61.882  1.00 34.20           C  
+ATOM   3192  O   SER B 211      37.235  30.967  62.150  1.00 35.60           O  
+ATOM   3193  CB  SER B 211      39.408  28.870  60.356  1.00 33.98           C  
+ATOM   3194  OG  SER B 211      39.371  28.449  59.012  1.00 33.75           O  
+ATOM   3195  OXT SER B 211      39.109  30.076  62.739  1.00 35.63           O  
+TER    3196      SER B 211                                                      
+ATOM   3197  N   THR B 212      25.442  40.818  39.630  1.00 41.53           N  
+ATOM   3198  CA  THR B 212      25.461  42.111  38.933  1.00 41.37           C  
+ATOM   3199  C   THR B 212      24.212  42.280  38.074  1.00 42.21           C  
+ATOM   3200  O   THR B 212      23.085  42.305  38.590  1.00 45.33           O  
+ATOM   3201  CB  THR B 212      26.716  42.234  38.076  0.00 20.00           C  
+ATOM   3202  OG1 THR B 212      27.863  41.863  38.849  0.00 20.00           O  
+ATOM   3203  CG2 THR B 212      26.982  43.691  37.730  0.00 20.00           C  
+ATOM   3204  N   ALA B 213      24.407  42.401  36.767  1.00 41.37           N  
+ATOM   3205  CA  ALA B 213      23.301  42.565  35.831  1.00 39.92           C  
+ATOM   3206  C   ALA B 213      22.994  41.261  35.106  1.00 39.95           C  
+ATOM   3207  O   ALA B 213      22.060  41.192  34.294  1.00 41.04           O  
+ATOM   3208  CB  ALA B 213      23.627  43.664  34.830  1.00 40.96           C  
+```
 There are 9 lines. 
 
 Line 1 ***If Using SPARKY Peaklist Files***
