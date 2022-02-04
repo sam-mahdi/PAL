@@ -80,6 +80,7 @@ To display the matches, you must check the display boxes.
 "Display combined NOEs" will display matches ONLY shared between the NH and HA matches. 
 
 ***For amino acid type***
+
 This program can also use BMRB average chemical shift ranges to predict what type of amino acid you are searching. 
 
 To do so, simply input your chemical shift values and click identify. 
