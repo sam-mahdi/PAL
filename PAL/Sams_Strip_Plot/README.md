@@ -81,6 +81,8 @@ To display the matches, you must check the display boxes.
 
 ***For amino acid type***
 
+***FOR IDENTIY SEARCH MAKES SURE BMBR.CSV FILE IS IN THE SAME DIRECTORY AS YOUR PEAKLISTS***
+
 This program can also use BMRB average chemical shift ranges to predict what type of amino acid you are searching. 
 
 To do so, simply input your chemical shift values and click identify. 
