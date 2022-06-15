@@ -214,6 +214,7 @@ def clear_lists():
 
 def main(nhsqc,nhsqc_directory,hnca,hnca_directory,hncacb,hncacb_directory,hnco,hnco_directory,hncoca,hncoca_directory,old_nhsqc,old_nhsqc_directory,NOE,NOE_directory,hncaco,hncaco_directory,unassigned_flag,transfer_only_CB_HNCACB):
     clear_lists()
+    os.chdir(nhsqc_directory)
     with open(nhsqc) as new_nhsqc_file:
         shift_3d(new_nhsqc_file,nhsqc,nhsqc_directory,hnca,hnca_directory,hncacb,hncacb_directory,hnco,hnco_directory,hncoca,hncoca_directory,old_nhsqc,old_nhsqc_directory,NOE,NOE_directory,hncaco,hncaco_directory,unassigned_flag,transfer_only_CB_HNCACB)
     list_of_names,list_of_names2=make_name_list(nhsqc,hnca,hncacb,hnco,hncoca,NOE,hncaco,old_nhsqc)
