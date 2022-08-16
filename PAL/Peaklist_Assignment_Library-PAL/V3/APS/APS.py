@@ -21,7 +21,7 @@ root = tk.Tk()
 root.title('APS')
 root.geometry('1200x800')
 
-if no_photo_flag is False:
+if sys.argv[1] != 'no_photo':
     from PIL import ImageTk, Image
     def on_resize(event):
         image = bgimg.resize((event.width, event.height), Image.ANTIALIAS)
