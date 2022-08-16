@@ -7,25 +7,27 @@ import re
 import tkinter.scrolledtext as st
 from tkinter import ttk
 import functools
-from PIL import ImageTk, Image
 import webbrowser
 import sys
 
 
 root = tk.Tk()
 root.title('AVS_V3')
-#This is for fitting the image to the size of the GUI
-def on_resize(event):
-    image = bgimg.resize((event.width, event.height), Image.ANTIALIAS)
-    l.image = ImageTk.PhotoImage(image)
-    l.config(image=l.image)
 
-root.geometry('1200x800')
+if no_photo_flag is False:
+    #This is for fitting the image to the size of the GUI
+    from PIL import ImageTk, Image
+    def on_resize(event):
+        image = bgimg.resize((event.width, event.height), Image.ANTIALIAS)
+        l.image = ImageTk.PhotoImage(image)
+        l.config(image=l.image)
 
-bgimg = Image.open('mountain.jpg')
-l = tk.Label(root)
-l.place(x=0, y=0, relwidth=1, relheight=1)
-l.bind('<Configure>', on_resize)
+    root.geometry('1200x800')
+
+    bgimg = Image.open('mountain.jpg')
+    l = tk.Label(root)
+    l.place(x=0, y=0, relwidth=1, relheight=1)
+    l.bind('<Configure>', on_resize)
 #This enables the output box to update, but prevents the user from typing stuff into it (read only)
 class ReadOnlyText(st.ScrolledText):
     def __init__(self, *args, **kwargs):
