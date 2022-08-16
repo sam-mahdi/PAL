@@ -19,6 +19,6 @@ else
     else
          cd PAL_virtual_environment
          cd PAL
-         python3 PAL.py   
+         python3 PAL.py blob
     fi     
 fi
