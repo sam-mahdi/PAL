@@ -26,10 +26,10 @@ def on_resize(event):
     l.image = ImageTk.PhotoImage(image)
     l.config(image=l.image)
     
-    bgimg = Image.open('beach.jpg')
-    l = tk.Label(root)
-    l.place(x=0, y=0, relwidth=1, relheight=1)
-    l.bind('<Configure>', on_resize)
+bgimg = Image.open('beach.jpg')
+l = tk.Label(root)
+l.place(x=0, y=0, relwidth=1, relheight=1)
+l.bind('<Configure>', on_resize)
 
 class ReadOnlyText(st.ScrolledText):
     def __init__(self, *args, **kwargs):
