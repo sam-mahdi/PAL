@@ -1,4 +1,4 @@
-To run PAL [in linux, for windows run in virtual environment using python3]:
+To run PAL [in linux]:
 
 All you need to do is run the "run.sh" file in the terminal. 
 
