@@ -17,11 +17,7 @@ def AVS_thread():
         os.system('python3 AVS.py no_photo')
 
 def APS_thread():
-    if sys.argv[1] != 'no_photo':
-        os.system('python3 APS.py')
-    else:
-        os.system('python3 APS.py no_photo')
-
+    os.system('python3 APS.py')
 def strip_plot_thread():
     os.system('python3 strip_plot_sm.py')
 
