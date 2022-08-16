@@ -11,10 +11,16 @@ root.geometry('1200x200')
 main_pathway=os.getcwd()
 
 def AVS_thread():
-    os.system('python3 AVS.py')
+    if sys.argv[1] != 'no_photo':
+        os.system('python3 AVS.py')
+    else:
+        os.system('python3 AVS.py no_photo')
 
 def APS_thread():
-    os.system('python3 APS.py')
+    if sys.argv[1] != 'no_photo':
+        os.system('python3 APS.py')
+    else:
+        os.system('python3 APS.py no_photo')
 
 def strip_plot_thread():
     os.system('python3 strip_plot_sm.py')
