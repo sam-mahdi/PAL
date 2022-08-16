@@ -12,7 +12,7 @@ main_pathway=os.getcwd()
 
 def AVS_thread():
     if sys.argv[1] != 'no_photo':
-        os.system('python3 AVS.py')
+        os.system('python3 AVS.py blob')
     else:
         os.system('python3 AVS.py no_photo')
 
