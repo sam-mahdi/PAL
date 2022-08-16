@@ -13,5 +13,9 @@ python3 PAL.py
 else
     cd PAL_virtual_environment
     cd PAL
-    python3 PAL.py
+    if [ $1 == "no_photo" ]; then 
+        python3 PAL.py no_photo
+    else:
+        python3 PAL.py
+    fi    
 fi
