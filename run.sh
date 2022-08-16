@@ -1,4 +1,4 @@
-if [ ! -d "$PAL_virtual_environment" ]; then 
+if [ ! -d "PAL_virtual_environment" ]; then 
 echo "creating virtual environment"
 python3 -m venv PAL_virtual_environment
 source PAL_virtual_environment/bin/activate
