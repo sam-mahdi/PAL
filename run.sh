@@ -15,8 +15,9 @@ else
             mv PAL PAL_virtual_environment
             cd PAL_virtual_environment
             cd PAL
-            python3 PAL.py
+            python3 PAL.py blob
     else
+         source PAL_virtual_environment/bin/activate
          cd PAL_virtual_environment
          cd PAL
          python3 PAL.py blob
