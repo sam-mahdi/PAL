@@ -14,7 +14,7 @@ import sys
 root = tk.Tk()
 root.title('AVS_V3')
 
-if sys.argv[1] == 'no_photo':
+if sys.argv[1] != 'no_photo':
     #This is for fitting the image to the size of the GUI
     from PIL import ImageTk, Image
     def on_resize(event):
