@@ -11,7 +11,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import mplcursors
 import webbrowser
-from PIL import ImageTk, Image
 from matplotlib import rcParams, cycler
 
 
@@ -22,15 +21,17 @@ root = tk.Tk()
 root.title('APS')
 root.geometry('1200x800')
 
-def on_resize(event):
-    image = bgimg.resize((event.width, event.height), Image.ANTIALIAS)
-    l.image = ImageTk.PhotoImage(image)
-    l.config(image=l.image)
+if no_photo_flag is False:
+    from PIL import ImageTk, Image
+    def on_resize(event):
+        image = bgimg.resize((event.width, event.height), Image.ANTIALIAS)
+        l.image = ImageTk.PhotoImage(image)
+        l.config(image=l.image)
 
-bgimg = Image.open('beach.jpg')
-l = tk.Label(root)
-l.place(x=0, y=0, relwidth=1, relheight=1)
-l.bind('<Configure>', on_resize)
+    bgimg = Image.open('beach.jpg')
+    l = tk.Label(root)
+    l.place(x=0, y=0, relwidth=1, relheight=1)
+    l.bind('<Configure>', on_resize)
 
 class ReadOnlyText(st.ScrolledText):
     def __init__(self, *args, **kwargs):
