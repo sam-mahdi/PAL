@@ -12,7 +12,7 @@ else
             pip install --upgrade pip
             pip install --upgrade setuptools
             pip install -r requirements.txt
-            mv PAL PAL_virtual_environment
+            cp -r PAL PAL_virtual_environment
             cd PAL_virtual_environment
             cd PAL
             python3 PAL.py blob
