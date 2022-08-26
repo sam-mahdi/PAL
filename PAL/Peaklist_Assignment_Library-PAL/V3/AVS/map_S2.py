@@ -24,6 +24,8 @@ def pymol_mapS2(NMRSTAR_directory,pdb_file,pdb_directory,startaa):
     bfacts=[]
     for line in s2_only:
         bfact=((1/(float(line)))-float(line))/1.5
+        if bfact < 1:
+            bfact = 0
         bfacts.append(bfact)
         cmd.alter("%s and resi %s and n. CA"%(mol,counter), "b=%s"%bfact)
         counter=counter+1
