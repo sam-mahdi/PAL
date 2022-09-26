@@ -22,21 +22,28 @@ def pymol_mapS2(NMRSTAR_directory,pdb_file,pdb_directory,startaa):
     cmd.alter(mol,"b=-1.0")
     counter=int(startaa)
     bfacts=[]
+    s2_list=[]
+    for entries in s2_only:
+        if float(entries) > 1:
+            continue
+        s2_list.append(float(entries))
+    average=sum(s2_list)/len(s2_list)    
     for line in s2_only:
-        bfact=((1/(float(line)))-float(line))/1.5
-        if bfact < 1:
-            bfact = 0
+        if float(line) > 1:
+            bfact=average
+        else:    
+            bfact=((1/(float(line)))-float(line))/1.5
         bfacts.append(bfact)
         cmd.alter("%s and resi %s and n. CA"%(mol,counter), "b=%s"%bfact)
         counter=counter+1
-        cmd.show_as("cartoon",mol)
-        cmd.cartoon("putty", mol)
-        cmd.set("cartoon_putty_scale_min", min(bfacts),mol)
-        cmd.set("cartoon_putty_scale_max", max(bfacts),mol)
-        cmd.set("cartoon_putty_transform", 7,mol)
-        cmd.set("cartoon_putty_radius", max(bfacts),mol)
-        cmd.spectrum("b","white red", "%s and n. CA " %mol)
-        cmd.ramp_new("color_bar", mol, [min(bfacts), max(bfacts)],["white","red"])
-        cmd.recolor()
+    cmd.show_as("cartoon",mol)
+    cmd.cartoon("putty", mol)
+    cmd.set("cartoon_putty_scale_min", min(bfacts),mol)
+    cmd.set("cartoon_putty_scale_max", max(bfacts),mol)
+    cmd.set("cartoon_putty_transform", 7,mol)
+    cmd.set("cartoon_putty_radius", max(bfacts),mol)
+    cmd.spectrum("b","white red", "%s and n. CA " %mol)
+    cmd.ramp_new("color_bar", mol, [min(bfacts), max(bfacts)],["white","red"])
+    cmd.recolor()
 
 pymol_mapS2(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4])
