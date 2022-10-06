@@ -32,8 +32,8 @@ def pymol_mapSS(NMRSTAR_directory,pdb_file,pdb_directory,startaa):
     for ss,residue,residuen in zip(ss_only,residue_type,residue_number):
         bfact=float(ss)
         cmd.alter("%s and resi %s and resn %s and n. CA"%(mol,residuen,residue), "b=%s"%bfact)
-        cmd.cartoon("automatic",mol)
-        cmd.spectrum("b","grey grey blue red", "%s and n. CA " %mol)
-        cmd.recolor()
+    cmd.cartoon("automatic",mol)
+    cmd.spectrum("b","grey grey blue red", "%s and n. CA " %mol)
+    cmd.recolor()
 
 pymol_mapSS(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4])
