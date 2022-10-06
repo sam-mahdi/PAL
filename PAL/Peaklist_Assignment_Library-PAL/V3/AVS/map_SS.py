@@ -26,9 +26,6 @@ def pymol_mapSS(NMRSTAR_directory,pdb_file,pdb_directory,startaa):
             	residue_type.append(convert[lines.strip().split()[1]])
     obj=cmd.get_object_list(mol)
     cmd.alter(mol,"b=-1.0")
-    bfacts=[]
-    for ss,residue,residuen in zip(ss_only,residue_type,residue_number):
-    	print(ss,residue,residuen)
     for ss,residue,residuen in zip(ss_only,residue_type,residue_number):
         bfact=float(ss)
         cmd.alter("%s and resi %s and resn %s and n. CA"%(mol,residuen,residue), "b=%s"%bfact)
