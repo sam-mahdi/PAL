@@ -168,7 +168,7 @@ def HNCACO_peaklist(amino_acid,residue_number,atom,temp_list,spectra_list,HNCACO
             if re.search('^\w\d+\w+',hnco_i_lines.strip()) is None:
                 continue
             hnco_i_split=hnco_i_lines.strip().split()
-            if amino_acid+residue_number+atom == hnco_i_split[0].split('-')[1]:
+            if amino_acid+residue_number+atom == re.search('[A-Z]\d+',hnco_i_split[0].split('-')[0]).group(0)+hnco_i_split[0].split('-')[1]:
                 temp_list.append(float(hnco_i_split[2]))
                 spectra_list.append('HNCACO')
 def HNCOCA_peaklist(amino_acid,residue_number,atom,temp_list,spectra_list,HNCOCA_file,HNCOCA_directory):
