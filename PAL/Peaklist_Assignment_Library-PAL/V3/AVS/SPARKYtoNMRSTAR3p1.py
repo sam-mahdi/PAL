@@ -59,7 +59,7 @@ def regex_list(sequence_file,seq_directory,seq_start_value):
     Serine_Values=['C','CA','CB','HA','HB2','HB3','H','N']
     Threanine_Values=['C','CA','CB','CG2','HA','HB','HG2','H','N']
     Tryptophan_Values=['C','CA','CB','HA','HB2','HB3','H','HE1','N','NE1']
-    Valine_Values=['C','CA','CB','CG1','CG2','HA','HB','HG2','H','N']
+    Valine_Values=['C','CA','CB','CG1','CG2','HA','HB','HG2','HG1','H','N']
     for amino_acids in sequence_list(sequence_file,seq_directory,seq_start_value):
         if amino_acids[-1] == 'M':
             methionine=[amino_acids+'-'+atom for atom in Methionine_Values]
